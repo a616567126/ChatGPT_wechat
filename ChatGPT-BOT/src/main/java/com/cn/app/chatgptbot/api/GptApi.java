@@ -1,5 +1,6 @@
 package com.cn.app.chatgptbot.api;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cn.app.chatgptbot.dto.GptAlphaDto;
 import com.cn.app.chatgptbot.dto.GptBingDto;
 import com.cn.app.chatgptbot.dto.GptTurboDto;
@@ -14,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
@@ -27,6 +29,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1")
 @RequiredArgsConstructor
+@Slf4j
 public final class GptApi {
 
     /**
@@ -49,7 +52,10 @@ public final class GptApi {
     @GetMapping(value = "/auth/{code}", name = "WeChat-OpenId", produces = MediaType.APPLICATION_JSON_VALUE)
     public Result getOpenId(@PathVariable final String code) {
         // Returns  WeChat user OpenId
-        return Result.data(weChatDetectUtils.getUserOpenId(code));
+        log.info("获取openId传参：" + code);
+        Result result = Result.data(weChatDetectUtils.getUserOpenId(code));
+        log.info("获取openId结果：" + JSONObject.toJSONString(result));
+        return result;
     }
 
     /**

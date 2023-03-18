@@ -7,6 +7,13 @@ server:
 #    key-store-password: XXXXXXX
 #    key-store-type: PKCS12
 
+# 日志配置
+logging:
+  level:
+    #自己的包名
+    com.cn: info
+    org.springframework: warn
+
 #代理ip
 broker:
   ip: 127.0.0.1
