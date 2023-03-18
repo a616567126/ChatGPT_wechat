@@ -43,7 +43,7 @@ public final class WebClientUtil {
                 .retrieve()
                 .bodyToMono(String.class)
                 .timeout(Duration.ofSeconds(120))
-                .onErrorMap(Exception.class, e -> new CustomException("使用该功能的用户过多 请十分钟后再试"))
+                .onErrorMap(Exception.class, e -> new CustomException("使用该功能的用户过多 请十分钟后再试", e))
                 .block();
     }
 

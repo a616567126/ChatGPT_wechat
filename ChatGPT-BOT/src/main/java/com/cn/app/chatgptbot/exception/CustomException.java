@@ -1,6 +1,8 @@
 package com.cn.app.chatgptbot.exception;
 
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * custom exceptions
  *
@@ -8,6 +10,7 @@ package com.cn.app.chatgptbot.exception;
  * @email 2074055628@qq.com
  */
 @SuppressWarnings("all")
+@Slf4j
 public class CustomException extends RuntimeException {
 
     /*
@@ -25,5 +28,11 @@ public class CustomException extends RuntimeException {
         super(message);
         this.message = message;
 
+    }
+
+    public CustomException(final String message, Exception e) {
+        super(message);
+        this.message = message;
+        log.error("Bing请求失败：" + e.getMessage(), e);
     }
 }
